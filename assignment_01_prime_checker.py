@@ -35,3 +35,25 @@
 # YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
 # =============================================================================
 
+import math
+
+def isPrime(number):
+    test = True
+    if number <= 1:
+        test = False
+    else:
+        for i in range(2,int(math.sqrt(number)) + 1):
+            if number % i == 0:
+                test = False
+                break
+    if test:
+        result = str(number) + " is a prime number."
+    else:
+        result = str(number) + " is NOT a prime number."
+    
+    return result
+    
+
+myNumber = int(input("Enter a number: "))
+myResult = isPrime(myNumber)
+print(myResult)
