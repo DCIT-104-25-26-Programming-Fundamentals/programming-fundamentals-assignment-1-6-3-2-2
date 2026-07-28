@@ -55,3 +55,35 @@
 # YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
 # =============================================================================
 
+def single_mult_table(n):
+    if n <= 0:
+        return "Error: The number must be a positive integer."
+        
+    result = f"Multiplication Table for {n}:\n"
+    for i in range(1,13):
+        product = n*i
+        result += f"{n} × {i} = {product}\n"
+        
+    return result
+
+number = int(input("Enter a number: "))
+print(single_mult_table(number))
+
+
+def multiple_mult_table(n):
+    if n <= 0:
+        return "Error: The number must be a positive integer."
+    
+    result = ""
+    for i in range(1,n+1):
+        result += f"Multiplication Table for {i}:\n"
+        for j in range(1,13):
+            product = i*j
+            result += f"{i} × {j} = {product}\n"
+            
+        result += "-------------------------\n"
+        
+    return result
+    
+number = int(input("Enter a number: "))
+print(multiple_mult_table(number))
