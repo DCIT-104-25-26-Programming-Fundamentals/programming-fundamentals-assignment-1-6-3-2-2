@@ -79,3 +79,59 @@
 # YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
 # =============================================================================
 
+def addTask(todolist):
+    task = input("Enter task:")
+    todolist.append(task)
+    print(f"Task added: '{task}'")
+    return
+    
+def deleteTask(todolist):
+    task_no = input("Enter task number to delete: ")
+    if not task_no.isdigit() or int(task_no) <= 0 or int(task_no) > len(todolist):
+        print("Error: Invalid input")
+        return
+        
+    print(f"Task '{todolist[(int(task_no) - 1)]}' has been removed.")
+    del todolist[int(task_no) - 1]
+    
+    return
+    
+def viewTasks(todolist):
+    if len(todolist)==0:
+        print("There are no tasks in your to-do list.")
+        return
+    result = "Your Tasks:\n"
+    
+    for i in range(1,len(todolist)+1):
+        result += f"{i}. {todolist[i-1]}\n"
+    print(result)
+    return
+    
+def quit():
+    print("Goodbye!")
+    return
+    
+print(f"""============================
+      TO-DO LIST MENU
+============================
+   1. Add task
+   2. View tasks
+   3. Delete task
+   4. Quit
+""")
+   
+
+todolist = []
+while True:
+    choice = input("\nEnter your choice (1-4): ")
+    if choice =='1':
+        addTask(todolist)
+    elif choice == '2':
+        viewTasks(todolist)
+    elif choice =='3':
+        deleteTask(todolist)
+    elif choice == '4':
+        quit()
+        break
+    else:
+        print("Error: Invalid input")
