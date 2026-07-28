@@ -90,3 +90,102 @@
 # YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
 # =============================================================================
 
+def addStudent(studentList):
+    name = input("Student name: ")
+    st_id = input("Student ID: ")
+    if not st_id.isdigit() or int(st_id)<=0:
+        print("Error: Invalid input")
+        return
+    score_no = input("How many scores? ")
+    scores = []
+    if not score_no.isdigit() or int(score_no) <=0:
+        print("Error: Invalid input")
+        return
+
+    for i in range(1, int(score_no) + 1):
+        score = input(f"Enter score {i}: ")
+        if not score.isdigit() or int(score) < 0 or int(score) > 100:
+            print("Error: Invalid input")
+            return
+        scores.append(int(score))
+       
+    student = {
+        "name":name,
+        "id":st_id,
+        "scores":scores
+    }
+    studentList.append(student)
+    print(f"Student '{name}' has been successfully added.")
+    return
+
+    
+def average_score(studentList):
+    if len(studentList)==0:
+        print("No student has been added yet.")
+        return
+    st_id = input("Enter student ID: ")
+    if not st_id.isdigit() or int(st_id)<=0:
+        print("Error: Invalid input")
+        return
+    total = 0
+    score_no = 0
+    for student in studentList:
+        for key, value in student.items():
+            if st_id==value:
+                result = f"{student['name']}'s average score: "
+                total = 0
+                score_no = len(student["scores"])
+                for i in student["scores"]:
+                    total += i
+    if score_no==0:
+        print("There is no student with that ID.")
+        return        
+    average = total/score_no
+    result+= f"{round(average,2)}"
+    print(result)
+    return
+    
+    
+def display_table(studentList):
+    if len(studentList) == 0:
+        print("No student has been added yet.")
+        return
+    print('='*50)
+    print("Student Name\tStudent ID\tScores\tAverage Score")
+    print('='*50)
+    for student in studentList:
+        total= 0
+        score_no = len(student["scores"])
+        for i in student["scores"]:
+            total += i
+        scores = [str(x) for x in student["scores"]]
+        print(f"{student['name']}\t{student['id']}\t{','.join(scores)}\t{round(total/score_no,2)}")
+    return
+    
+def quit():
+    print("Goodbye!")
+    return
+    
+print(f"""================================
+   STUDENT RECORD SYSTEM MENU
+================================
+   1. Add student
+   2. Display all students
+   3. Calculate average score
+   4. Quit
+   """)
+   
+studentList = []
+while True:
+    choice = input("\nEnter your choice (1-4): ")
+    if choice =='1':
+        addStudent(studentList)
+    elif choice == '2':
+        display_table(studentList)
+    elif choice =='3':
+        average_score(studentList)
+    elif choice == '4':
+        quit()
+        break
+    else:
+        print("Error: Invalid input")
